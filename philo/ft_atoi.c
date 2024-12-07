@@ -12,13 +12,6 @@
 
 #include "philo.h"
 
-static int	ft_isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
 static int	is_overflow(long long res, int sign, char c)
 {
 	if (res * sign > (LLONG_MAX - (c - '0')) / 10 && sign == 1)
