@@ -63,7 +63,7 @@ int	init_mutexes(t_mutexes *mutexes, int count)
 {
 	int	exit_code;
 
-	memset(mutexes, 0, sizeof(t_mutexes) * count);
+	memset(mutexes, 0, sizeof(t_mutexes));
 	exit_code = iter_init_mutexes(&mutexes->forks, count);
 	if (exit_code == SUCCESS)
 		exit_code = iter_init_mutexes(&mutexes->states, count);

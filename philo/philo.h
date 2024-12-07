@@ -71,6 +71,9 @@ typedef struct s_philo
 	t_timeval		*s_time;
 }	t_philo;
 
+/*    philos    */
+int		init_philos(t_philo **philos, t_mutexes *mutexes,
+			int *rules, t_timeval *s_time);
 /*    mutexes    */
 int		init_mutexes(t_mutexes *mutexes, int number_of_philo);
 void	destroy_mutexes(t_mutexes *mutexes, int count);

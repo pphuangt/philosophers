@@ -14,10 +14,10 @@
 
 int	main(int argc, char **argv)
 {
-	//t_philo		*philos;
+	t_philo		*philos;
 	t_mutexes	mutexes;
 	int			rules[NUMBER_OF_RULE];
-	//t_timeval	start_time;
+	t_timeval	s_time;
 
 	if (init_rules(rules, argc, argv) != SUCCESS)
 		return (INPUT_ERROR);
@@ -25,6 +25,8 @@ int	main(int argc, char **argv)
 		return (SUCCESS);
 	if (init_mutexes(&mutexes, rules[NUMBER_OF_PHILO]) != SUCCESS)
 		return (MUTEX_ERROR);
-	//destroy_mutexes(&mutexes, rules[NUMBER_OF_PHILO]);
+	if (init_philos(&philos, &mutexes, rules, &s_time) != SUCCESS)
+		return (MALLOC_ERROR);
+	destroy_mutexes(&mutexes, rules[NUMBER_OF_PHILO]);
 	return (0);
 }
