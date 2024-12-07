@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pphuangt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/07 19:57:56 by pphuangt          #+#    #+#             */
+/*   Updated: 2024/12/07 19:57:58 by pphuangt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	main(int argc, char **argv)
@@ -13,7 +25,6 @@ int	main(int argc, char **argv)
 		return (SUCCESS);
 	if (init_mutexes(&mutexes, rules[NUMBER_OF_PHILO]) != SUCCESS)
 		return (MUTEX_ERROR);
-	printf("%d %d %d %d %d\n", rules[0], rules[1], rules[2], rules[3], rules[4]);
-	destroy_mutexes(&mutexes, rules[NUMBER_OF_PHILO]);
+	//destroy_mutexes(&mutexes, rules[NUMBER_OF_PHILO]);
 	return (0);
 }

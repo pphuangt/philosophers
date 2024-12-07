@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rules.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pphuangt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/07 19:58:18 by pphuangt          #+#    #+#             */
+/*   Updated: 2024/12/07 19:58:20 by pphuangt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 static int	is_overflow_int(const char *nptr)
@@ -50,7 +62,9 @@ int	init_rules(int *rules, int argc, char **argv)
 	if (argc != NUMBER_OF_RULE && argc != NUMBER_OF_RULE + 1)
 	{
 		ft_putendl_fd(ARG_NUM_ERR_MSG, STDERR_FILENO);
-		ft_putendl_fd(USAGE_MSG, STDERR_FILENO);
+		ft_putendl_fd("Usage: ./philo {number_of_philosophers} {time_to_die} "
+			"{time_to_eat} {time_to_sleep} "
+			"[number_of_times_each_philosopher_must_eat]", STDERR_FILENO);
 		return (INPUT_ERROR);
 	}
 	rules[NUMBER_OF_RULE - 1] = -1;
@@ -58,12 +72,12 @@ int	init_rules(int *rules, int argc, char **argv)
 	{
 		if (!is_number(argv[argc]) || is_negative(argv[argc]))
 		{
-			ft_putendl_fd("Error: arguments must be a number and positive", STDERR_FILENO);
+			ft_putendl_fd(INVALID_ARG_ERR_MSG, STDERR_FILENO);
 			return (INPUT_ERROR);
 		}
 		if (is_overflow_int(argv[argc]))
 		{
-			ft_putendl_fd("Error: arguments is too large (overflow)", STDERR_FILENO);
+			ft_putendl_fd(ARG_TO_LARGE_ERR_MSG, STDERR_FILENO);
 			return (INPUT_ERROR);
 		}
 		rules[argc - 1] = ft_atoi(argv[argc]);

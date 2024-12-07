@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pphuangt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/07 19:58:40 by pphuangt          #+#    #+#             */
+/*   Updated: 2024/12/07 19:58:42 by pphuangt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -10,8 +22,9 @@
 # include <unistd.h>
 
 # define NUMBER_OF_RULE 5
-# define USAGE_MSG "Usage: ./philo {number_of_philosophers} {time_to_die} {time_to_eat} {time_to_sleep} [number_of_times_each_philosopher_must_eat]"
-# define ARG_NUM_ERR_MSG "Error: Wrong number of arguments."
+# define INVALID_ARG_ERR_MSG "Error: arguments must be a number and positive"
+# define ARG_TO_LARGE_ERR_MSG "Error: arguments is too large (overflow)"
+# define ARG_NUM_ERR_MSG "Error: Wrong number of arguments"
 # define MALLOC_ERR_MSG "Error: malloc function"
 # define MUTEX_ERR_MSG "Error: pthread_mutex_init function"
 # define THREAD_ERR_MSG "Error: pthread_create function"
@@ -19,7 +32,8 @@
 
 typedef struct timeval	t_timeval;
 
-enum e_exit_codes {
+enum e_exit_codes
+{
 	SUCCESS,
 	INPUT_ERROR,
 	MALLOC_ERROR,
@@ -28,7 +42,8 @@ enum e_exit_codes {
 	GETTIME_ERROR,
 };
 
-enum e_rules {
+enum e_rules
+{
 	NUMBER_OF_PHILO,
 	TIME_TO_DIE,
 	TIME_TO_EAT,
@@ -36,14 +51,16 @@ enum e_rules {
 	NUMBER_OF_EAT_GOAL
 };
 
-typedef struct s_mutexes {
+typedef struct s_mutexes
+{
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	*states;
 	pthread_mutex_t	*print;
 	pthread_mutex_t	*sync;
 }	t_mutexes;
 
-typedef struct s_philo {
+typedef struct s_philo
+{
 	int				id;
 	pthread_mutex_t	*left;
 	pthread_mutex_t	*right;
@@ -69,5 +86,4 @@ size_t	ft_strlen(const char *s);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_putendl_fd(char *s, int fd);
 
-
-# endif
+#endif
