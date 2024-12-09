@@ -27,6 +27,11 @@ int	main(int argc, char **argv)
 		return (MUTEX_ERROR);
 	if (init_philos(&philos, &mutexes, rules, &s_time) != SUCCESS)
 		return (MALLOC_ERROR);
+	if (init_threads(philos, &mutexes, rules, &s_time) != SUCCESS)
+		return (THREAD_ERROR);
+	monitor(philos, rules);
+	join_threads(philos, rules[NUMBER_OF_PHILO]);
 	destroy_mutexes(&mutexes, rules[NUMBER_OF_PHILO]);
-	return (0);
+	free(philos);
+	return (SUCCESS);
 }

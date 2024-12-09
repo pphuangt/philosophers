@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pphuangt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/29 13:51:35 by pphuangt          #+#    #+#             */
-/*   Updated: 2023/08/29 14:15:27 by pphuangt         ###   ########.fr       */
+/*   Created: 2023/09/01 15:59:38 by pphuangt          #+#    #+#             */
+/*   Updated: 2023/09/05 19:22:32 by pphuangt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "utils.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	ft_putendl_fd(char *s, int fd)
 {
-	size_t	i;
+	size_t	s_len;
 
-	i = 0;
-	while (i < n && s1[i] != '\0' && s1[i] == s2[i])
-		i++;
-	if (i == n)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	if (!s)
+		return ;
+	s_len = ft_strlen(s);
+	write(fd, s, s_len);
+	write(fd, "\n", 1);
 }

@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pphuangt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/01 15:59:38 by pphuangt          #+#    #+#             */
-/*   Updated: 2023/09/05 19:22:32 by pphuangt         ###   ########.fr       */
+/*   Created: 2023/08/25 17:01:05 by pphuangt          #+#    #+#             */
+/*   Updated: 2023/09/01 12:57:35 by pphuangt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "utils.h"
 
-void	ft_putendl_fd(char *s, int fd)
+size_t	ft_strlen(const char *s)
 {
-	size_t	s_len;
+	size_t	i;
 
-	if (!s)
-		return ;
-	s_len = ft_strlen(s);
-	write(fd, s, s_len);
-	write(fd, "\n", 1);
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

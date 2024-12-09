@@ -1,7 +1,14 @@
 NAME = philo
+INCLUDES = includes
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -O2
-SRCS = $(addprefix ,main.c rules.c mutexes.c philos.c error.c ft_isdigit.c ft_atoi.c ft_strlen.c ft_strncmp.c ft_putendl_fd.c)
+HEADERS = -I/$(INCLUDES)
+SRCS = $(addprefix srcs/, main.c \
+	   $(addprefix init/, rules.c mutexes.c philos.c threads.c) \
+	   $(addprefix philosopher/, philosopher.c forks.c action.c) \
+	   $(addprefix monitor/, monitor.c) \
+	   $(addprefix utils/, ft_isdigit.c ft_atoi.c ft_strlen.c ft_strncmp.c\
+	   ft_putendl_fd.c ft_timeradd.c ft_timersub.c err_ret.c))
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
@@ -10,7 +17,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 
 %.o: %.c
-	$(CC) -c $(CFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) -c $(HEADERS) -o $@ $<
 
 clean:
 	rm -rf $(OBJS)

@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philos.c                                           :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pphuangt <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/07 21:05:17 by pphuangt          #+#    #+#             */
-/*   Updated: 2024/12/07 21:05:20 by pphuangt         ###   ########.fr       */
+/*   Created: 2023/08/25 14:51:01 by pphuangt          #+#    #+#             */
+/*   Updated: 2023/08/28 16:14:57 by pphuangt         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "utils.h"
 
-int	init_philos(t_philo **philos, t_mutexes *mutexes,
-		int *rules, t_timeval *s_time)
+int	ft_isdigit(int c)
 {
-	(void)philos;
-	(void)mutexes;
-	(void)rules;
-	(void)s_time;
-	return (SUCCESS);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

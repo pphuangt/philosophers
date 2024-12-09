@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "utils.h"
 
 static int	is_overflow(long long res, int sign, char c)
 {
