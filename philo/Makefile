@@ -2,7 +2,7 @@ NAME = philo
 INCLUDES = includes
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -O2
-HEADERS = -I/$(INCLUDES)
+HEADERS = -I./$(INCLUDES)
 SRCS = $(addprefix srcs/, main.c \
 	   $(addprefix init/, rules.c mutexes.c philos.c threads.c) \
 	   $(addprefix philosopher/, philosopher.c forks.c action.c) \
@@ -14,7 +14,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) $(HEADERS) -o $(NAME) $(OBJS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $(HEADERS) -o $@ $<

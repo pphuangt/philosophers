@@ -18,15 +18,17 @@ static void	init_philo(t_philo *philo, t_mutexes *mutexes,
 	static int	i = 0;
 
 	philo->id = i + 1;
-	philo->left = &forks[i];
-	philo->right = &forks[(i + 1) % rules->num_of_philos];
+	philo->left = &mutexes->forks[i];
+	philo->right = &mutexes->forks[(i + 1) % rules[NUMBER_OF_PHILO]];
 	philo->state = ALIVE;
 	philo->state_mutex = &mutexes->state_mutexes[i];
 	philo->print_mutex = mutexes->print_mutex;
 	philo->sync_mutex = mutexes->sync_mutex;
 	philo->rules = rules;
 	philo->s_time = s_time;
-	set_forks(philo, mutexes->forks, rules, i);
+	memset(&philo->cycle_target_time, 0, sizeof(t_timeval));
+	philo->initial_think_time_us = calc_initial_think_time_us(rules, philo->id);
+	philo->think_time_us = calc_think_time_us(rules);
 	i++;
 }
 
@@ -39,7 +41,7 @@ int	init_philos(t_philo **philos, t_mutexes *mutexes,
 	if (!*philos)
 	{
 		destroy_mutexes(mutexes, rules[NUMBER_OF_PHILO]);
-		return (err_ret_int(MALLOC_ERR_MSG, MALLOC_ERROR));
+		return (err_ret(MALLOC_ERR_MSG, MALLOC_ERROR));
 	}
 	memset(*philos, 0, sizeof(t_philo) * rules[NUMBER_OF_PHILO]);
 	i = 0;

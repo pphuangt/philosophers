@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   defines.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pphuangt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 10:28:14 by pphuangt          #+#    #+#             */
+/*   Updated: 2024/12/09 10:28:15 by pphuangt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef DEFINES_H
 # define DEFINES_H
 
@@ -18,7 +30,8 @@
 # define THREAD_ERR_MSG "Error: pthread_create function"
 # define GETTIME_ERR_MSG "Error: gettimeofday function"
 
-typedef struct timeval	t_timeval;
+typedef struct timeval		t_timeval;
+typedef unsigned long long	t_ull;
 
 enum e_exit_codes
 {
@@ -68,6 +81,14 @@ typedef struct s_philo
 	pthread_mutex_t	*print_mutex;
 	int				*rules;
 	t_timeval		*s_time;
+	t_timeval		cycle_target_time;
+	t_ull			initial_think_time_us;
+	t_ull			think_time_us;
+	t_ull			initial_cycle_time_us;
+	t_ull			cycle_time_us;
+	t_ull			latest_timestamp_ms;
+	t_ull			last_meal_timestamp_ms;
+	int				meals_eaten;
 }	t_philo;
 
 #endif

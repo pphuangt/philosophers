@@ -25,6 +25,15 @@ int		init_threads(t_philo *philos, t_mutexes *mutexes,
 			int *rules, t_timeval *s_time);
 void	join_threads(t_philo *philos, int count);
 void	*philosopher(void *arg);
+void	set_forks(t_philo *philo, pthread_mutex_t **forks);
 void	monitor(t_philo *philos, int *rules);
+int		is_alive(t_philo *philo);
+t_ull	calc_initial_think_time_us(int *rules, int id);
+t_ull	calc_think_time_us(int *rules);
+t_ull	to_us(t_timeval *time);
+t_ull	get_elapsed_time_ms(t_timeval *s_time);
+t_ull	get_elapsed_time_us(t_timeval *s_time);
+t_ull	get_remaining_time_us(t_timeval *target_time, t_philo *philo);
+void	increase_target_time(t_timeval *target, t_ull us);
 
 #endif

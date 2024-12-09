@@ -41,14 +41,14 @@ static int	iter_init_mutexes(pthread_mutex_t **mutexes_member, int count)
 
 	*mutexes_member = malloc(count * sizeof(pthread_mutex_t));
 	if (!*mutexes_member)
-		return (err_ret_int(MALLOC_ERR_MSG, MALLOC_ERROR));
+		return (err_ret(MALLOC_ERR_MSG, MALLOC_ERROR));
 	i = 0;
 	while (i < count)
 	{
 		if (pthread_mutex_init(&(*mutexes_member)[i], NULL) != 0)
 		{
 			iter_destroy_mutexes(mutexes_member, i);
-			return (err_ret_int(MUTEX_ERR_MSG, MUTEX_ERROR));
+			return (err_ret(MUTEX_ERR_MSG, MUTEX_ERROR));
 		}
 		i++;
 	}

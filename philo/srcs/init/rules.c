@@ -60,17 +60,17 @@ static int	is_negative(char *arg)
 int	init_rules(int *rules, int argc, char **argv)
 {
 	if (argc != NUMBER_OF_RULE && argc != NUMBER_OF_RULE + 1)
-		return (err_ret_int(ARG_NUM_ERR_MSG
-			"\nUsage: ./philo {number_of_philosophers} {time_to_die}"
-			"{time_to_eat} {time_to_sleep} "
-			"[number_of_times_each_philosopher_must_eat]", INPUT_ERROR));
+		return (err_ret(ARG_NUM_ERR_MSG
+				"\nUsage: ./philo {number_of_philosophers} {time_to_die}"
+				"{time_to_eat} {time_to_sleep} "
+				"[number_of_times_each_philosopher_must_eat]", INPUT_ERROR));
 	rules[NUMBER_OF_RULE - 1] = -1;
 	while (--argc >= 1)
 	{
 		if (!is_number(argv[argc]) || is_negative(argv[argc]))
-			return (err_ret_int(INVALID_ARG_ERR_MSG, INPUT_ERROR));
+			return (err_ret(INVALID_ARG_ERR_MSG, INPUT_ERROR));
 		if (is_overflow_int(argv[argc]))
-			return (err_ret_int(ARG_TO_LARGE_ERR_MSG, INPUT_ERROR));
+			return (err_ret(ARG_TO_LARGE_ERR_MSG, INPUT_ERROR));
 		rules[argc - 1] = ft_atoi(argv[argc]);
 	}
 	return (SUCCESS);

@@ -1,18 +1,16 @@
-#include "philo.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosopher.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pphuangt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 10:30:50 by pphuangt          #+#    #+#             */
+/*   Updated: 2024/12/09 10:30:51 by pphuangt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static void	set_forks(t_philo *philo, pthread_mutext_t **forks)
-{
-	if (philo->id & 1)
-	{
-		forks[0] = philo->left;
-		forks[1] = philo->right;
-	}
-	else
-	{
-		forks[0] = philo->right;
-		forks[1] = philo->left;
-	}
-}
+#include "philo.h"
 
 void	*philosopher(void *arg)
 {
@@ -23,6 +21,13 @@ void	*philosopher(void *arg)
 	pthread_mutex_lock(philo->sync_mutex);
 	pthread_mutex_unlock(philo->sync_mutex);
 	set_forks(philo, forks);
+	timeradd(&philo->cycle_target_time, philo->s_time,
+		&philo->cycle_target_time);
+	if (philo->initial_think_time_us)
+		if (!philo_think_initial(philo))
+			return (NULL);
+	increase_target_time(&philo->cycle_target_time,
+		philo->initial_cycle_time_us);
 	while (42)
 	{
 		if (eating(philo, forks))

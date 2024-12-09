@@ -1,4 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   forks.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pphuangt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/09 10:30:54 by pphuangt          #+#    #+#             */
+/*   Updated: 2024/12/09 10:30:54 by pphuangt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
+
+void	set_forks(t_philo *philo, pthread_mutex_t **forks)
+{
+	if (philo->id & 1)
+	{
+		forks[0] = philo->left;
+		forks[1] = philo->right;
+	}
+	else
+	{
+		forks[0] = philo->right;
+		forks[1] = philo->left;
+	}
+}
 
 int	take_forks(t_philo *philo, pthread_mutex_t **forks)
 {
@@ -18,7 +44,7 @@ int	take_forks(t_philo *philo, pthread_mutex_t **forks)
 	return (SUCCESS);
 }
 
-void	release_forks(pthread_mutext_t **forks)
+void	release_forks(pthread_mutex_t **forks)
 {
 	pthread_mutex_unlock(forks[0]);
 	pthread_mutex_unlock(forks[1]);
