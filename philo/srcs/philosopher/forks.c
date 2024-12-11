@@ -29,16 +29,15 @@ void	set_forks(t_philo *philo, pthread_mutex_t **forks)
 int	take_forks(t_philo *philo, pthread_mutex_t **forks)
 {
 	pthread_mutex_lock(forks[0]);
-	if (print_if_alive(philo, "take fork") != SUCCESS)
+	if (print_if_alive(philo, "%d %d has taken a fork\n") != SUCCESS)
 	{
 		pthread_mutex_unlock(forks[0]);
 		return (-1);
 	}
 	pthread_mutex_lock(forks[1]);
-	if (print_if_alive(philo, "take fork") != SUCCESS)
+	if (print_if_alive(philo, "%d %d has taken a fork\n") != SUCCESS)
 	{
-		pthread_mutex_unlock(forks[0]);
-		pthread_mutex_unlock(forks[1]);
+		release_forks(forks);
 		return (-1);
 	}
 	return (SUCCESS);

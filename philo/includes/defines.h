@@ -29,6 +29,11 @@
 # define MUTEX_ERR_MSG "Error: pthread_mutex_init function"
 # define THREAD_ERR_MSG "Error: pthread_create function"
 # define GETTIME_ERR_MSG "Error: gettimeofday function"
+# define USLEEP_LONG_US				1000
+# define USLEEP_SHORT_THRESHOLD_US	2000
+# define USLEEP_SHORT_US			100
+# define BUSY_WAIT_THRESHOLD_US		100
+# define DEATH_MARGIN_MS			10
 
 typedef struct timeval		t_timeval;
 typedef unsigned long long	t_ull;

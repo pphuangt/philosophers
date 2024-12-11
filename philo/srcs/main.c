@@ -29,7 +29,7 @@ int	main(int argc, char **argv)
 		return (MALLOC_ERROR);
 	if (init_threads(philos, &mutexes, rules, &s_time) != SUCCESS)
 		return (THREAD_ERROR);
-	monitor(philos, rules);
+	//monitor(philos, rules);
 	join_threads(philos, rules[NUMBER_OF_PHILO]);
 	destroy_mutexes(&mutexes, rules[NUMBER_OF_PHILO]);
 	free(philos);

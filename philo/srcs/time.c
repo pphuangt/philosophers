@@ -24,7 +24,7 @@ t_ull	get_elapsed_time_ms(t_timeval *s_time)
 
 	gettimeofday(&current, NULL);
 	timersub(&current, s_time, &result);
-	return (result.tv_sec * 1000ULL + result.tv_sec / 1000);
+	return (result.tv_sec * 1000ULL + result.tv_usec / 1000);
 }
 
 t_ull	get_elapsed_time_us(t_timeval *s_time)
@@ -37,18 +37,19 @@ t_ull	get_elapsed_time_us(t_timeval *s_time)
 	return (to_us(&result));
 }
 
-t_ull	get_remaining_time_us(t_timeval *target_time, t_philo *philo)
+t_ull	get_remaining_time_us(t_timeval *target_time)
 {
 	t_timeval	current;
 	t_timeval	result;
 
+	gettimeofday(&current, NULL);
 	if (timercmp(&current, target_time, >))
 		return (0);
 	timersub(target_time, &current, &result);
 	return (to_us(&result));
 }
 
-void	increase_target_time(t_timeval *target, t_ull increase_us)
+void	increase_target_time(t_timeval *target_time, t_ull increase_us)
 {
 	t_timeval	increase;
 
