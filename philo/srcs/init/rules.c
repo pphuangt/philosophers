@@ -12,23 +12,23 @@
 
 #include "philo.h"
 
-static int	is_overflow_int(const char *nptr)
+static int	is_overflow(char *s)
 {
 	int		i;
-	char	*int_max;
+	int		len;
 	int		int_max_len;
-	int		num_len;
+	char	*int_max;
 
 	i = 0;
 	int_max = "2147483647";
 	int_max_len = ft_strlen(int_max);
-	while (nptr[i] == '0')
+	while (s[i] == '0')
 		i++;
-	num_len = 0;
-	while (ft_isdigit(nptr[i + num_len]))
-		num_len++;
-	if ((num_len == int_max_len && ft_strncmp(&nptr[i], int_max, num_len) > 0)
-		|| num_len > int_max_len)
+	len = 0;
+	while (ft_isdigit(s[i + len]))
+		len++;
+	if ((len == int_max_len && ft_strncmp(&s[i], int_max, len) > 0)
+		|| len > int_max_len)
 		return (1);
 	return (0);
 }
@@ -69,7 +69,7 @@ int	init_rules(int *rules, int argc, char **argv)
 	{
 		if (!is_number(argv[argc]) || is_negative(argv[argc]))
 			return (err_ret(INVALID_ARG_ERR_MSG, INPUT_ERROR));
-		if (is_overflow_int(argv[argc]))
+		if (is_overflow(argv[argc]))
 			return (err_ret(ARG_TO_LARGE_ERR_MSG, INPUT_ERROR));
 		rules[argc - 1] = ft_atoi(argv[argc]);
 	}

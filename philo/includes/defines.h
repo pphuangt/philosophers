@@ -88,7 +88,7 @@ typedef struct s_philo
 	int				*rules;
 	t_timeval		*s_time;
 	t_timeval		cycle_target_time;
-	t_ull			initial_think_time_us;
+	t_ull			start_time_us;
 	t_ull			think_time_us;
 	t_ull			initial_cycle_time_us;
 	t_ull			cycle_time_us;

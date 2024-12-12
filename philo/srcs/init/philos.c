@@ -27,7 +27,7 @@ static void	init_philo(t_philo *philo, t_mutexes *mutexes,
 	philo->rules = rules;
 	philo->s_time = s_time;
 	memset(&philo->cycle_target_time, 0, sizeof(t_timeval));
-	philo->initial_think_time_us = calc_initial_think_time_us(rules, philo->id);
+	philo->start_time_us = set_start_time_us(rules, philo->id);
 	philo->think_time_us = calc_think_time_us(rules);
 	philo->initial_cycle_time_us = calc_initial_cycle_time_us(rules, philo);
 	philo->cycle_time_us = calc_cycle_time_us(rules, philo);

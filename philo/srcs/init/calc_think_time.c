@@ -21,7 +21,7 @@ static t_ull	calc_think_block_us(int *rules)
 			/ (rules[NUMBER_OF_PHILO] & ~1));
 }
 
-t_ull	calc_initial_think_time_us(int *rules, int id)
+t_ull	set_start_time_us(int *rules, int id)
 {
 	int	block_amount;
 
