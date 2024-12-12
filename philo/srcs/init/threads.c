@@ -31,7 +31,7 @@ static int	create_philo_threads(t_philo *philos, int count)
 		if (pthread_create(&philos[i].thread, NULL,
 				philosopher, &philos[i]) != 0)
 		{
-			//broadcast(philos, STOPPED, i);
+			broadcast(philos, STOPPED, i);
 			pthread_mutex_unlock(philos[i].sync_mutex);
 			join_threads(philos, i);
 			return (err_ret(THREAD_ERR_MSG, THREAD_ERROR));

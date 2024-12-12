@@ -38,7 +38,8 @@ t_ull	calc_initial_think_time_us(int *rules, int id)
 	{
 		if (id & 1)
 			return (0);
-		return (rules[TIME_TO_EAT] * 1000ULL - get_initial_think_margin_us(rules));
+		return (rules[TIME_TO_EAT] * 1000ULL
+			- get_initial_think_margin_us(rules));
 	}
 }
 

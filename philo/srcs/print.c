@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pphuangt <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/12 07:28:09 by pphuangt          #+#    #+#             */
+/*   Updated: 2024/12/12 07:28:10 by pphuangt         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-static void	print_msg(t_philo *philo, const char *msg)
+void	print_msg(t_philo *philo, const char *msg)
 {
 	pthread_mutex_lock(philo->print_mutex);
 	philo->latest_timestamp_ms = get_elapsed_time_ms(philo->s_time);

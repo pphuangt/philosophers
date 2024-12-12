@@ -33,6 +33,9 @@ int		sleeping(t_philo *philo);
 int		thinking(t_philo *philo);
 int		thinking_initial(t_philo *philo);
 void	monitor(t_philo *philos, int *rules);
+void	broadcast(t_philo *philos, t_state state, int num_of_philos);
+void	print_death(t_philo *philos, int num_of_philos, int dead_philo);
+void	print_msg(t_philo *philo, const char *msg);
 int		is_alive(t_philo *philo);
 int		print_if_alive(t_philo *philo, const char *msg);
 t_ull	calc_initial_think_time_us(int *rules, int id);
@@ -48,6 +51,6 @@ t_ull	get_remaining_time_us(t_timeval *target_time);
 void	increase_target_time(t_timeval *target_time, t_ull increase_us);
 int		usleep_while_alive_precise(t_ull us, t_philo *philo);
 int		usleep_while_alive_precise_target(t_timeval *target_time,
-								t_philo *philo);
+			t_philo *philo);
 
 #endif

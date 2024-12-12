@@ -34,6 +34,7 @@
 # define USLEEP_SHORT_US			100
 # define BUSY_WAIT_THRESHOLD_US		100
 # define DEATH_MARGIN_MS			10
+# define MONITOR_INTERVAL_US		433
 
 typedef struct timeval		t_timeval;
 typedef unsigned long long	t_ull;
