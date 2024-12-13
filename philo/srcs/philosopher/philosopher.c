@@ -91,7 +91,7 @@ void	*philosopher(void *arg)
 		if (wait_start_time(philo) != SUCCESS)
 			return (NULL);
 	increase_target_time(&philo->target_time,
-		philo->start_cycle_time_us);
+		philo->cycle_time_us);
 	while (42)
 	{
 		if (eating(philo, forks) != SUCCESS)

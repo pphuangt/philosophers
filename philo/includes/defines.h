@@ -89,7 +89,6 @@ typedef struct s_philo
 	t_timeval		target_time;
 	t_ull			start_time_us;
 	t_ull			think_time_us;
-	t_ull			start_cycle_time_us;
 	t_ull			cycle_time_us;
 	t_ull			timestamp_ms;
 	t_ull			meal_timestamp_ms;

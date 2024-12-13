@@ -42,20 +42,11 @@ t_ull	set_think_time_us(int *rules)
 	return (0);
 }
 
-t_ull	set_start_cycle_time_us(int *rules, t_philo *philo)
-{
-	t_ull	set_start_cycle_time_us;
-
-	set_start_cycle_time_us = ((t_ull)rules[TIME_TO_EAT] + rules[TIME_TO_SLEEP])
-		* 1000 + philo->think_time_us;
-	return (set_start_cycle_time_us);
-}
-
 t_ull	set_cycle_time_us(int *rules, t_philo *philo)
 {
 	t_ull	cycle_time_us;
 
-	cycle_time_us = ((t_ull)rules[TIME_TO_EAT]
-			+ rules[TIME_TO_SLEEP]) * 1000 + philo->think_time_us;
+	cycle_time_us = ((t_ull)rules[TIME_TO_EAT] + rules[TIME_TO_SLEEP])
+		* 1000 + philo->think_time_us;
 	return (cycle_time_us);
 }

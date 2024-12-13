@@ -36,7 +36,6 @@ int		is_alive(t_philo *philo);
 int		print_if_alive(t_philo *philo, const char *msg);
 t_ull	set_start_time_us(int *rules, int id);
 t_ull	set_think_time_us(int *rules);
-t_ull	set_start_cycle_time_us(int *rules, t_philo *philo);
 t_ull	set_cycle_time_us(int *rules, t_philo *philo);
 t_ull	to_us(t_timeval *time);
 t_ull	get_elapsed_time_ms(t_timeval *s_time);
