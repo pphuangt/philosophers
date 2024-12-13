@@ -33,7 +33,6 @@
 # define USLEEP_SHORT_THRESHOLD_US	2000
 # define USLEEP_SHORT_US			100
 # define BUSY_WAIT_THRESHOLD_US		100
-# define DEATH_MARGIN_MS			10
 # define MONITOR_INTERVAL_US		433
 
 typedef struct timeval		t_timeval;
@@ -87,13 +86,13 @@ typedef struct s_philo
 	pthread_mutex_t	*print_mutex;
 	int				*rules;
 	t_timeval		*s_time;
-	t_timeval		cycle_target_time;
+	t_timeval		target_time;
 	t_ull			start_time_us;
 	t_ull			think_time_us;
-	t_ull			initial_cycle_time_us;
+	t_ull			start_cycle_time_us;
 	t_ull			cycle_time_us;
-	t_ull			latest_timestamp_ms;
-	t_ull			last_meal_timestamp_ms;
+	t_ull			timestamp_ms;
+	t_ull			meal_timestamp_ms;
 	int				meals_eaten;
 }	t_philo;
 

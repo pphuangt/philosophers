@@ -22,8 +22,8 @@ int	is_alive(t_philo *philo)
 		return (0);
 	}
 	pthread_mutex_unlock(philo->state_mutex);
-	philo->latest_timestamp_ms = get_elapsed_time_ms(philo->s_time);
-	if ((philo->latest_timestamp_ms - philo->last_meal_timestamp_ms)
+	philo->timestamp_ms = get_elapsed_time_ms(philo->s_time);
+	if ((philo->timestamp_ms - philo->meal_timestamp_ms)
 		>= (t_ull)philo->rules[TIME_TO_DIE])
 	{
 		pthread_mutex_lock(philo->state_mutex);

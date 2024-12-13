@@ -21,7 +21,7 @@ static int	eating(t_philo *philo, pthread_mutex_t **forks)
 		release_forks(forks);
 		return (-1);
 	}
-	philo->last_meal_timestamp_ms = philo->latest_timestamp_ms;
+	philo->meal_timestamp_ms = philo->timestamp_ms;
 	if (usleep_while_alive_precise(philo->rules[TIME_TO_EAT] * 1000ULL, philo)
 		!= SUCCESS)
 	{
@@ -56,10 +56,10 @@ static int	thinking(t_philo *philo)
 		return (-1);
 	if (philo->think_time_us)
 	{
-		if (usleep_while_alive_precise_target(&philo->cycle_target_time,
+		if (usleep_while_alive_precise_target(&philo->target_time,
 				philo) != SUCCESS)
 			return (-1);
-		increase_target_time(&philo->cycle_target_time, philo->cycle_time_us);
+		increase_target_time(&philo->target_time, philo->cycle_time_us);
 	}
 	return (SUCCESS);
 }
@@ -68,9 +68,9 @@ static int	wait_start_time(t_philo *philo)
 {
 	if (!is_alive(philo))
 		return (-1);
-	increase_target_time(&philo->cycle_target_time,
+	increase_target_time(&philo->target_time,
 		philo->start_time_us);
-	if (usleep_while_alive_precise_target(&philo->cycle_target_time, philo)
+	if (usleep_while_alive_precise_target(&philo->target_time, philo)
 		!= SUCCESS)
 		return (-1);
 	return (SUCCESS);
@@ -85,13 +85,13 @@ void	*philosopher(void *arg)
 	pthread_mutex_lock(philo->sync_mutex);
 	pthread_mutex_unlock(philo->sync_mutex);
 	set_forks(philo, forks);
-	timeradd(&philo->cycle_target_time, philo->s_time,
-		&philo->cycle_target_time);
+	timeradd(&philo->target_time, philo->s_time,
+		&philo->target_time);
 	if (philo->start_time_us)
 		if (wait_start_time(philo) != SUCCESS)
 			return (NULL);
-	increase_target_time(&philo->cycle_target_time,
-		philo->initial_cycle_time_us);
+	increase_target_time(&philo->target_time,
+		philo->start_cycle_time_us);
 	while (42)
 	{
 		if (eating(philo, forks) != SUCCESS)

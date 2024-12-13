@@ -15,8 +15,8 @@
 void	print_msg(t_philo *philo, const char *msg)
 {
 	pthread_mutex_lock(philo->print_mutex);
-	philo->latest_timestamp_ms = get_elapsed_time_ms(philo->s_time);
-	printf(msg, philo->latest_timestamp_ms, philo->id);
+	philo->timestamp_ms = get_elapsed_time_ms(philo->s_time);
+	printf(msg, philo->timestamp_ms, philo->id);
 	pthread_mutex_unlock(philo->print_mutex);
 }
 
