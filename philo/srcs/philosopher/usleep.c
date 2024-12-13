@@ -45,11 +45,3 @@ int	usleep_while_alive_precise(t_ull us, t_philo *philo)
 		busy_wait(us, &s_usleep);
 	return (SUCCESS);
 }
-
-int	usleep_while_alive_precise_target(t_timeval *target_time, t_philo *philo)
-{
-	t_ull	remaining_time_us;
-
-	remaining_time_us = get_remaining_time_us(target_time);
-	return (usleep_while_alive_precise(remaining_time_us, philo));
-}

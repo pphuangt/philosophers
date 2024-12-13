@@ -43,7 +43,5 @@ t_ull	get_elapsed_time_us(t_timeval *s_time);
 t_ull	get_remaining_time_us(t_timeval *target_time);
 void	increase_target_time(t_timeval *target_time, t_ull increase_us);
 int		usleep_while_alive_precise(t_ull us, t_philo *philo);
-int		usleep_while_alive_precise_target(t_timeval *target_time,
-			t_philo *philo);
 
 #endif

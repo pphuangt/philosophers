@@ -52,11 +52,14 @@ static int	sleeping(t_philo *philo)
 
 static int	thinking(t_philo *philo)
 {
+	t_ull	remaining_time_us;
+
 	if (print_if_alive(philo, "%d %d is thinking\n") != SUCCESS)
 		return (-1);
 	if (philo->think_time_us)
 	{
-		if (usleep_while_alive_precise_target(&philo->target_time,
+		remaining_time_us = get_remaining_time_us(&philo->target_time);
+		if (usleep_while_alive_precise(remaining_time_us,
 				philo) != SUCCESS)
 			return (-1);
 		increase_target_time(&philo->target_time, philo->cycle_time_us);
@@ -66,11 +69,14 @@ static int	thinking(t_philo *philo)
 
 static int	wait_start_time(t_philo *philo)
 {
+	t_ull	remaining_time_us;
+
 	if (!is_alive(philo))
 		return (-1);
 	increase_target_time(&philo->target_time,
 		philo->start_time_us);
-	if (usleep_while_alive_precise_target(&philo->target_time, philo)
+	remaining_time_us = get_remaining_time_us(&philo->target_time);
+	if (usleep_while_alive_precise(remaining_time_us, philo)
 		!= SUCCESS)
 		return (-1);
 	return (SUCCESS);
